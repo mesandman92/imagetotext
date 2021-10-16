@@ -4,10 +4,10 @@ import { Log } from './Log';
 import { DnD } from './DnD';
 import defaultImage from './rus.png';
 
-// Переменная для хранения выбранного файла
+// РџРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РІС‹Р±СЂР°РЅРЅРѕРіРѕ С„Р°Р№Р»Р°
 let file;
 
-// Селект для выбора языков
+// РЎРµР»РµРєС‚ РґР»СЏ РІС‹Р±РѕСЂР° СЏР·С‹РєРѕРІ
 const langsSelect = document.getElementById('langs');
 langs.forEach((lang) => {
   const option = document.createElement('option');
@@ -16,7 +16,7 @@ langs.forEach((lang) => {
   langsSelect.appendChild(option);
 });
 
-// Инпут для загрузки файлов и активация drag-n-drop зоны
+// РРЅРїСѓС‚ РґР»СЏ Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»РѕРІ Рё Р°РєС‚РёРІР°С†РёСЏ drag-n-drop Р·РѕРЅС‹
 const preview = document.getElementById('preview');
 const input = document.getElementById('file');
 function createPreview(loadedFile) {
@@ -34,16 +34,16 @@ DnD(document.body, (loadedFile) => {
   file = loadedFile;
   createPreview(file);
 });
-// Установка изображения по умолчанию
+// РЈСЃС‚Р°РЅРѕРІРєР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 file = preview.src = defaultImage;
 
-// Кнопка Начать обработку
+// РљРЅРѕРїРєР° РќР°С‡Р°С‚СЊ РѕР±СЂР°Р±РѕС‚РєСѓ
 const start = document.getElementById('start');
 
-// Лог
+// Р›РѕРі
 const log = Log(document.getElementById('log'));
 
-// Функция распознавания текста
+// Р¤СѓРЅРєС†РёСЏ СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ С‚РµРєСЃС‚Р°
 function recognize(file, langs) {
   return Tesseract.recognize(file, langs, {
     logger: (data) => {
@@ -56,16 +56,16 @@ function recognize(file, langs) {
   });
 }
 
-// Начать обработку по клику на кнопку
+// РќР°С‡Р°С‚СЊ РѕР±СЂР°Р±РѕС‚РєСѓ РїРѕ РєР»РёРєСѓ РЅР° РєРЅРѕРїРєСѓ
 start.addEventListener('click', () => {
-  // Заблокировать кнопку
+  // Р—Р°Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РєРЅРѕРїРєСѓ
   start.disabled = true;
 
   log.clear();
 
   recognize(file, langsSelect.value)
     .then((data) => {
-      // По окончании обработки вывести результат
+      // РџРѕ РѕРєРѕРЅС‡Р°РЅРёРё РѕР±СЂР°Р±РѕС‚РєРё РІС‹РІРµСЃС‚Рё СЂРµР·СѓР»СЊС‚Р°С‚
       log.clear();
       log.setResult(data);
     })
@@ -73,7 +73,7 @@ start.addEventListener('click', () => {
       console.error(err);
     })
     .finally(() => {
-      // Разблокировать кнопку
+      // Р Р°Р·Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РєРЅРѕРїРєСѓ
       start.disabled = false;
     });
 });
