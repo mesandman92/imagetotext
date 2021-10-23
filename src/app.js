@@ -7,7 +7,7 @@ import defaultImage from './rus.png';
 // Переменная для хранения выбранного файла
 let file;
 
-// Селект для выбора языков
+// Выбор языков
 const langsSelect = document.getElementById('langs');
 langs.forEach((lang) => {
   const option = document.createElement('option');
@@ -16,7 +16,7 @@ langs.forEach((lang) => {
   langsSelect.appendChild(option);
 });
 
-// Инпут для загрузки файлов и активация drag-n-drop зоны
+// Загрузка файлов и активация drag-n-drop зоны
 const preview = document.getElementById('preview');
 const input = document.getElementById('file');
 function createPreview(loadedFile) {
